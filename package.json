@@ -1,0 +1,16 @@
+{
+  "name": "@foundry-vtt/compendium-translator",
+  "description": "Foundry VTT Compendium Translator",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@parvineyvazov/json-translator": "^1.8.0",
+    "jsdom": "^24.0.0"
+  }
+}
