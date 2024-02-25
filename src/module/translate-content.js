@@ -52,7 +52,7 @@ export async function translateContent(content, language, attempts = 0) {
   let translatedContent = await translator.translateWord(
     convertedContent,
     translator.languages.English,
-    translator.getLanguages().Portuguese_Brazil
+    language
   );
 
   if (translatedContent === "--") {

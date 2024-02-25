@@ -45,13 +45,13 @@ async function translateJson(fileName, language) {
   const content = JSON.parse(file.toString());
   const entries = content.entries;
 
-  const translatedEntries = await translateObject(entries);
+  const translatedEntries = await translateObject(entries, language);
 
   const translatedContent = { ...content, entries: translatedEntries };
   return JSON.stringify(translatedContent, null, 2);
 }
 
-async function translateObject(object) {
+async function translateObject(object, language) {
   const translatedObject = {};
 
   for (const key in object) {
