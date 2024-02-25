@@ -6,6 +6,7 @@ This project is a script designed to translate Foundry VTT compendiums from Engl
 
 - Translate any Foundry VTT compendium.
 - Supports multiple languages.
+- Converts measures to metric system.
 - Easy to use and integrate into your workflow.
 
 ## How to Use
