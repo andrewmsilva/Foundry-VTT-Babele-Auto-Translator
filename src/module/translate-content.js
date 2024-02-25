@@ -61,7 +61,7 @@ export async function translateContent(content, language, attempts = 0) {
       await new Promise((resolve) => setTimeout(resolve, 5000));
       return translateContent(content, language, (attempts ?? 0) + 1);
     } else {
-      throw new Error("Failed to translate content");
+      throw new Error("Failed to translate content", convertedContent);
     }
   }
 
@@ -81,7 +81,7 @@ export async function translateContent(content, language, attempts = 0) {
 
 function convertMeasurements(text) {
   const regex =
-    /(\d+(\.\d+)?)\s*(in(ch(es)?)?|foot|feet|yd|yard|mi|mile|oz|ounce|lb|pound)s?/gi;
+    /(\d+(\.\d+)?)\s*(inch(es)?|foot|feet|yd|yard|mile|oz|ounce|lb|pound)s?/gi;
 
   const conversionToMeters = {
     in: 0.0254,

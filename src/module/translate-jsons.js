@@ -30,9 +30,9 @@ export async function translateJsons(language) {
       fs.writeFileSync(`${outputDir}/${fileName}`, translatedData);
 
       const endTime = new Date().getTime();
-      console.info(`Translated in ${(endTime - startTime) / 1000} seconds`);
+      console.info(`\nTranslated in ${(endTime - startTime) / 1000} seconds`);
     } catch (error) {
-      console.error(error);
+      console.error("\n", error);
     }
   }
 
@@ -46,7 +46,7 @@ async function translateJson(fileName, language) {
 
   const entriesKeys = Object.keys(content.entries);
 
-  process.stdout.write(`Translated 0 of ${entriesKeys.length} entries\n`);
+  process.stdout.write(`Translated 0 of ${entriesKeys.length} entries`);
 
   for (let i = 0; i < entriesKeys.length; i++) {
     const key = entriesKeys[i];

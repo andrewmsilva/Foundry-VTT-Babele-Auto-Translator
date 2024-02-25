@@ -1,3 +1,4 @@
 /node_modules
 /src/data/input/*.json
 /src/data/output/*.json
+.DS_Store
