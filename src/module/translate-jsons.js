@@ -43,24 +43,37 @@ async function translateJson(fileName, language) {
   const file = fs.readFileSync(path.join(inputDir, fileName));
 
   const content = JSON.parse(file.toString());
-  const entries = content.entries;
 
-  const translatedEntries = await translateObject(entries, language);
+  const entriesKeys = Object.keys(content.entries);
 
-  const translatedContent = { ...content, entries: translatedEntries };
-  return JSON.stringify(translatedContent, null, 2);
+  process.stdout.write(`Translated 0 of ${entriesKeys.length} entries\n`);
+
+  for (let i = 0; i < entriesKeys.length; i++) {
+    const key = entriesKeys[i];
+    const entry = content.entries[key];
+    const translatedEntry = await translateEntry(entry, language);
+    content.entries[key] = translatedEntry;
+
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(
+      `Translated ${i + 1} of ${entriesKeys.length} entries`
+    );
+  }
+
+  return JSON.stringify(content, null, 2);
 }
 
-async function translateObject(object, language) {
-  const translatedObject = {};
+async function translateEntry(entry, language) {
+  const translatedEntry = {};
 
-  for (const key in object) {
-    if (typeof object[key] === "object") {
-      translatedObject[key] = await translateObject(object[key], language);
+  for (const key in entry) {
+    if (typeof entry[key] === "object") {
+      translatedEntry[key] = await translateEntry(entry[key], language);
     } else {
-      translatedObject[key] = await translateHtml(object[key], language);
+      translatedEntry[key] = await translateHtml(entry[key], language);
     }
   }
 
-  return translatedObject;
+  return translatedEntry;
 }

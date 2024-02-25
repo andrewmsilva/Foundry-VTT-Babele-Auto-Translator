@@ -1,6 +1,7 @@
-import translator from "@parvineyvazov/json-translator";
+import { languages } from "./languages.js";
+import { Sources, translateWord } from "@parvineyvazov/json-translator";
 
-global.source = translator.Sources.BingTranslate;
+global.source = Sources.BingTranslate;
 console.log = function () {};
 
 const separator = "&nbsp;".repeat(2);
@@ -49,9 +50,9 @@ export async function translateContent(content, language, attempts = 0) {
 
   const convertedContent = convertMeasurements(content);
 
-  let translatedContent = await translator.translateWord(
+  let translatedContent = await translateWord(
     convertedContent,
-    translator.languages.English,
+    languages.English,
     language
   );
 
