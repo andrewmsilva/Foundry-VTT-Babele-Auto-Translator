@@ -61,7 +61,7 @@ export async function translateContent(content, language, attempts = 0) {
       await new Promise((resolve) => setTimeout(resolve, 5000));
       return translateContent(content, language, (attempts ?? 0) + 1);
     } else {
-      throw new Error("Failed to translate content", convertedContent);
+      throw new Error(`Failed to translate:\n${content}`);
     }
   }
 
